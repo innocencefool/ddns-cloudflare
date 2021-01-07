@@ -29,15 +29,17 @@ def restful_api(url, method='GET', data=None):
             logging.info('%s %s' % (method, url))
             connection.request(method, url, headers=headers)
         response = connection.getresponse()
+        status = response.status
+        reason = response.reason
         result = json.loads(response.read().decode('utf-8'))
+        connection.close()
         if result['success']:
             return result['result']
         elif result['errors'] is not None and len(result['errors']) > 0 \
                 and result['errors'][0]['message'] is not None:
             logging.error(result['errors'][0]['message'])
         else:
-            logging.error(response.status)
-        connection.close()
+            logging.error('%s %s' % (status, reason))
     except Exception as e:
         logging.error(e)
 
