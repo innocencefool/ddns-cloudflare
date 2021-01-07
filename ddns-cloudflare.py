@@ -21,7 +21,7 @@ DDNS_LOG = 'ddns-cloudflare.log'
 def restful_api(url, method='GET', data=None):
     try:
         headers = {'Authorization': 'Bearer %s' % API_TOKEN, 'Content-Type': 'application/json'}
-        connection = http.client.HTTPSConnection(host="api.cloudflare.com", timeout=10)
+        connection = http.client.HTTPSConnection(host='api.cloudflare.com', timeout=10)
         if data is not None:
             logging.info('%s %s %s' % (method, url, data))
             connection.request(method, url, json.dumps(data), headers)
@@ -154,5 +154,5 @@ def main():
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename=DDNS_LOG, format="%(asctime)s - %(levelname)s - %(message)s", level=logging.INFO)
+    logging.basicConfig(filename=DDNS_LOG, format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
     main()
