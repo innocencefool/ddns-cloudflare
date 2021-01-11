@@ -14,8 +14,8 @@ RECORD = 'api'
 
 DOMAIN = '%s.%s' % (RECORD, ZONE)
 
-DDNS_CONF = 'ddns-cloudflare.conf'
-DDNS_LOG = 'ddns-cloudflare.log'
+DDNS_CONF = os.path.split(os.path.realpath(__file__))[0] + os.sep + 'ddns-cloudflare.conf'
+DDNS_LOG = os.path.split(os.path.realpath(__file__))[0] + os.sep + 'ddns-cloudflare.log'
 
 
 def restful_api(url, method='GET', data=None):
